@@ -1,23 +1,29 @@
 import random
 from collections import defaultdict
 
+# randomize rows, columns and numbers (of valid base pattern)
+from random import sample
 
-def generateSudoku(num_blocks):
-    # "." represents empty block
-    board = [["."]*num_blocks]*num_blocks
-    while True:
-        for i in range(num_blocks):
-            for j in range(num_blocks):
-                curr_val = random.randrange(1,num_blocks+1)
-                board[i][j] = curr_val
-        if isValidBoard(board):
-            break
-        else:
-            print("Not valid!")
+# pattern for a baseline valid solution
+def pattern(r,c,base,side): return (base*(r%base)+r//base+c)%side
 
+def shuffle(s,base): return sample(s,len(s))
+
+def generateSudoku(base):
+    rBase = range(base)
+    side = base*base
+    rows  = [ g*base + r for g in shuffle(rBase,base) for r in shuffle(rBase,base) ]
+    cols  = [ g*base + c for g in shuffle(rBase,base) for c in shuffle(rBase,base) ]
+    nums  = shuffle(range(1,base*base+1), base)
+
+    # produce board using randomized baseline pattern
+    board = [ [nums[pattern(r,c,base,side)] for c in cols] for r in rows ]
+    squares = side*side
+    empties = squares * 3//4
+    for p in sample(range(squares),empties):
+        board[p//side][p%side] = 0
+    numSize = len(str(side))
     return board
-
-
 
 def isValidBoard(board):
     box = defaultdict(list)
@@ -40,4 +46,3 @@ def isValidBoard(board):
                 box[boxindex].append(board[i][j])
     return True
 
-print(generateSudoku(9))
