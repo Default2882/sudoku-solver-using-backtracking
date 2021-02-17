@@ -9,6 +9,7 @@ size = (width, height) #size of the screen
 speed = [2, 2] #speed at which animation runs
 black = (0, 0, 0) #RGB of black
 green = (0, 255, 0) #RGB of green
+red = (255, 0, 0)
 
 def main():
     global screen
@@ -44,36 +45,28 @@ def drawgrid(board):
         l = []
         for y in range(0,height,blocksize):
 
-            # creating a pygame Rect object
-            # Rect(left , top, width, height)
-            #rect = pygame.Rect (x*blocksize, y*blocksize,
-            #                    blocksize, blocksize)
+            # if board[i][j] is 0 then it is a blank space, represented by "?"
+            # else it is a given number
+
             if board[x//blocksize][y//blocksize] != 0:
+                # render returns a surface
                 textSurface = font.render(str(board[x//blocksize][y//blocksize]),
-                                          True, (0,255,0))
+                                          True, green)
                 textRect = textSurface.get_rect()
+
+                # repositioning it to it's correct place.
                 textRect.update(x, y,
                                 blocksize, blocksize)
+
+                # drawing the text surface on the main screen.
                 screen.blit(textSurface, textRect)
             else:
-                textSurface = font.render("?",True, (255,0,0))
+                textSurface = font.render("?", True, red)
                 textRect = textSurface.get_rect()
                 textRect.update(x, y,
                                 blocksize, blocksize)
                 screen.blit(textSurface, textRect)
-            #l.append(textRect)
-            #print(x,y,row,col, x%blocksize,blocksize)
-            #drawing the rectangle
-            #pygame.draw.rect(screen, green, rect, 1)
-            #if (y+1) % blocksize == 0:
-            #    col += 1
-            #    if col > num_blocks:
-            #        row += 1
-            #        col = 0
         drawing.append(l)
-    #screen.fill(pygame.Color("black"))
-    #for i in range(num_blocks):
-    #    for j in rnage(num_blocks):
 
 
 main()
