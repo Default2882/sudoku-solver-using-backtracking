@@ -40,7 +40,7 @@ def isValidBoard(board):
                 board[i][j] in box[boxindex]
                 ):
                 return False
-            elif board[i][j] != ".":
+            elif board[i][j] != "?":
                 row[i].append(board[i][j])
                 col[j].append(board[i][j])
                 box[boxindex].append(board[i][j])
