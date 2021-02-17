@@ -1,6 +1,7 @@
 # **sudoku solver using backtracking, visualised by pygame**
 
 requirments - pygame
+
 run it by - <mark>python3 main.py</mark>
 
 ## Useful links - 
