@@ -12,12 +12,21 @@ def shuffle(s,base): return sample(s,len(s))
 def generateSudoku(base):
     rBase = range(base)
     side = base*base
-    rows  = [ g*base + r for g in shuffle(rBase,base) for r in shuffle(rBase,base) ]
-    cols  = [ g*base + c for g in shuffle(rBase,base) for c in shuffle(rBase,base) ]
+    rows  = [
+        g*base + r for g in shuffle(rBase,base)
+        for r in shuffle(rBase,base)
+            ]
+    cols  = [
+        g*base + c for g in shuffle(rBase,base)
+        for c in shuffle(rBase,base)
+            ]
     nums  = shuffle(range(1,base*base+1), base)
 
     # produce board using randomized baseline pattern
-    board = [ [nums[pattern(r,c,base,side)] for c in cols] for r in rows ]
+    board = [
+        [nums[pattern(r,c,base,side)] for c in cols]
+        for r in rows
+            ]
     squares = side*side
     empties = squares * 3//4
     for p in sample(range(squares),empties):

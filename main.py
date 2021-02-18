@@ -1,16 +1,10 @@
 import sys, pygame
 import gen_board
 import time
+from constants import *
 
 pygame.init() #initializing pygame modules
 
-num_blocks = 9 #number of blocks in the grid
-blocksize = 50 #blocksize
-width = height = num_blocks*blocksize  #width and height
-size = (width, height) #size of the screen
-black = (0, 0, 0) #RGB of black
-green = (0, 255, 0) #RGB of green
-red = (255, 0, 0)
 
 def main():
     global screen
@@ -74,8 +68,8 @@ sys.setrecursionlimit(10**6)
 
 
 def find_empty_location(arr, l):
-    for row in range(9):
-        for col in range(9):
+    for row in range(len(arr)):
+        for col in range(len(arr)):
             if(arr[row][col]== 0):
                 l[0]= row
                 l[1]= col
@@ -83,28 +77,30 @@ def find_empty_location(arr, l):
     return False
 
 def used_in_row(arr, row, num):
-    for i in range(9):
+    for i in range(len(arr)):
         if(arr[row][i] == num):
             return True
     return False
 
 def used_in_col(arr, col, num):
-    for i in range(9):
+    for i in range(len(arr)):
         if(arr[i][col] == num):
             return True
     return False
 
 def used_in_box(arr, row, col, num):
-    for i in range(3):
-        for j in range(3):
+    base = int((len(arr)**0.5))
+    for i in range(base):
+        for j in range(base):
             if(arr[i + row][j + col] == num):
                 return True
     return False
 
 def check_location_is_safe(arr, row, col, num):
+    base = int((len(arr)**0.5))
     return (
         not used_in_row(arr, row, num) and not used_in_col(arr, col, num) and
-        not used_in_box(arr, row - row % 3, col - col % 3, num)
+        not used_in_box(arr, row - row % base, col - col % base, num)
         )
 
 def print_board(board):
@@ -119,7 +115,7 @@ def solve_sudoku(board):
         return True
     row = l[0]
     col = l[1]
-    for num in range(1, 10):
+    for num in range(1, len(board) + 1):
         if(check_location_is_safe(board,
                           row, col, num)):
             board[row][col]= num
