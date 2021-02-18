@@ -1,4 +1,4 @@
-## **sudoku solver using backtracking, visualised by pygame**
+## **sudoku solver using backtracking, visualised in pygame**
 
 requirments - pygame
 
