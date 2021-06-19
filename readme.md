@@ -16,8 +16,8 @@
 
 ## Reference: 
 
-http://zhangroup.aporc.org/images/files/Paper_3485.pdf
-https://en.wikipedia.org/wiki/Backtracking
-https://www.sudokuwiki.org/sudoku.htm
+- http://zhangroup.aporc.org/images/files/Paper_3485.pdf
+- https://en.wikipedia.org/wiki/Backtracking
+- https://www.sudokuwiki.org/sudoku.htm
 
 
