@@ -1,12 +1,19 @@
-## **sudoku solver using backtracking, visualised by pygame**
+# Sudoku Solver using backtracking
 
-requirments - pygame
+## Dependencies:
 
-run it by - **python3 main.py**
+- pygame
 
-you can change the size of the sudoku board (remember to keep the board in n^2*n^2 form) by changing **num_blocks** [here](https://github.com/Default2882/sudoku-solver-using-backtracking/blob/master/constants.py).
+## Running the script: 
+```python
+    python3 main.py
+```
 
-## Useful links - 
+## Changing the size of the sudoku board:
+
+- You can change the size of the sudoku board (remember to keep the board in n^2*n^2 form) by changing **num_blocks** [here](https://github.com/Default2882/sudoku-solver-using-backtracking/blob/master/constants.py).
+
+## Reference: 
 http://zhangroup.aporc.org/images/files/Paper_3485.pdf
 
 
